@@ -1,0 +1,36 @@
+// FOOTER
+#colophon{
+    background-color: $grey3; //FARVE
+    padding: 80px 0;
+    color:$white; //FARVE
+
+    p{
+        margin-bottom: 0.5rem;
+    }
+
+    .col-md-2{
+        p{
+            margin-bottom: 0;
+        }
+    } 
+
+    a{
+        color: $white; //FARVE
+    }
+
+    img{
+        width: 80%;
+    }
+}
+
+.entry-footer{
+    display: none;
+}
+
+@media (max-width: 768px){
+    #colophon{
+        img{
+            width: 50%;
+        }
+    }
+}

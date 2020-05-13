@@ -1,0 +1,177 @@
+//HEADER
+#masthead{
+    background-color: $grey0; //FARVE
+    // padding: $space-half/1.2 0;
+    font-family: 'interstate', Arial, sans-serif;
+    font-weight: 700;
+    height: 72px;
+    display: flex;
+    align-items: center;
+
+    .container{
+        display: flex;
+        align-items: center;
+    }
+
+    .custom-logo{
+        width: auto;
+        max-height: 55px;
+    }
+
+    .site-title{
+        display: none;
+    }
+}
+
+.site-branding{ // område med logo og title
+    @extend .col-md-4;
+    font-size: 1.5rem;
+    font-weight: 500;
+    align-items: center;
+    display: flex;
+}
+
+#site-navigation{ //Menuen
+    @extend .col-md-8;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    li{
+        // margin-left: 1.3rem;
+
+        a{
+            color: $black; //FARVE
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            padding: 27px 10px;
+
+            &:visited{
+                color: $black; //FARVE
+                font-weight: bold;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                padding: 27px 10px;
+            }
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+#navbar-icon{
+    float: right;
+    width: 40px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+
+    span{
+        display: block;
+        position: absolute;
+        height: 5px;
+        width: 90%;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        background-color: $white; //FARVE
+
+        &:nth-child(1){
+            top: 0;
+        }
+
+        &:nth-child(2){
+            top: 12px;
+            width: 80%;
+        }
+
+        &:nth-child(3){
+            top: 24px;
+        }
+    }
+}
+
+//MENU
+@media only screen and (max-width: 768px){
+    .menu-menu-1-container{
+        // display: flex;
+        position: absolute;
+        background-color: $grey0; //FARVE
+        width: 100%;
+        z-index: 100;
+        top: 44px;
+        left: 0;
+        right: 0;
+    }
+
+    #site-navigation{ //Menuen
+        position: absolute;
+        left: 0;
+        right: 0;
+
+        li{
+            margin-left: 0;
+
+            a{
+                padding: 10px 0;
+
+                :visited{
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+
+    .main-navigation {
+
+        ul {
+            display: none;
+            list-style: none;
+            margin: 0;
+            padding-left: $space-half; 
+        }
+
+        li {
+            float: none;
+            position: inherit;
+        }
+    }
+    
+    .menu-toggle {
+        display: block;
+        width: 35%;
+        border: none;
+        background-color: $grey0; //FARVE
+    }
+    
+    .main-navigation.toggled ul {
+        display: block;
+        width: 100%;
+    
+        li{
+            font-size: 1.2rem;
+            // text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 400px){
+    .menu-toggle{
+        display: block;
+        width: 45%;
+        border: none;
+        background-color: $grey0; //FARVE
+    }
+
+    #site-navigation{ //Menuen
+        position: absolute;
+    }
+}
