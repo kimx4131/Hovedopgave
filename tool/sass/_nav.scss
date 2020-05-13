@@ -1,0 +1,123 @@
+.nav-link{
+    color:$color-white;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &:hover{
+        color: $color-white;
+        text-decoration: none;
+    }
+}
+
+.navbar{
+    background-color: $color-dark-grey;
+    padding:0;
+}
+
+.navbar-nav{
+    align-items: center;
+}
+
+.bg-light-grey{
+    background-color: $color-light-grey;
+
+    .nav-link{
+        color:$color-black;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+.navbar-expand-md {
+    flex-flow: wrap;
+}
+
+.logo{
+    width: 110px;
+    align-items: left;
+}
+
+.nav-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.a-logo{
+    padding: 9px 0;
+}
+
+.navbar-toggler-right{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar-icon{
+    float: right;
+    width: 40px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+
+    span{
+        display: block;
+        position: absolute;
+        height: 5px;
+        width: 100%;
+        background: $color-white;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+
+        &:nth-child(1){
+            top: 0;
+        }
+
+        &:nth-child(2){
+            top: 12px;
+            width: 80%;
+        }
+
+        &:nth-child(3){
+            top: 24px;
+        }
+    }
+}
+
+
+@media only screen and (min-width: 767px){
+    #toogle-logo{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    #desktop-logo{
+        display: none;
+    }
+
+    .navbar-toggler-right {
+        padding: 10px;
+    }
+
+    .navbar-nav {
+        align-items: flex-start;
+
+        form{
+            padding-bottom: 10px;
+        }
+    }
+
+    .bg-light-grey{
+        padding-bottom: 20px;
+    }
+
+    .logo{
+        width: 64px;
+    }
+}

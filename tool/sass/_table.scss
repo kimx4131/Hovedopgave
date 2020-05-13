@@ -1,0 +1,101 @@
+thead{
+    background: $color-grey;
+    color: $color-white;
+}
+
+th, td{
+    padding: 7px 0 7px 10px;
+
+    &:first-child{
+        padding-left: 20px;
+    }
+}
+
+tr{
+    border-bottom: 0.5px solid $color-light-grey;
+    img{
+        width: 30px;
+        height: auto;
+    }
+}
+
+table{
+    width: 100%;
+}
+
+.slet{
+    background-image: url("img/icons/slet.png");
+    background-repeat: no-repeat, repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    border: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    cursor:pointer;
+}
+
+.ret{
+    background-image: url("img/icons/ret.png");
+    background-repeat: no-repeat, repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    border: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    cursor:pointer;
+}
+
+.kode{
+    background-image: url("img/icons/kode.png");
+    background-repeat: no-repeat, repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    border: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    cursor:pointer;
+}
+
+.billede{
+    background-image: url("img/icons/billede.png");
+    background-repeat: no-repeat, repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    border: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    cursor:pointer;
+}
+
+.download{
+    background-image: url("img/icons/download.png");
+    background-repeat: no-repeat, repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    border: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    cursor:pointer;
+    filter: invert(1);
+}
+
+#lukpopup,#lukpopup2,#lukpopup3{
+    cursor:pointer;
+}
+
+.nulstil{
+    border: none;
+    margin: 0;
+    width: auto;
+    cursor: pointer;
+}

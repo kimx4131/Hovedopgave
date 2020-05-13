@@ -1,0 +1,28 @@
+footer{
+    background-color: $color-dark-grey;
+    padding: 45px 0;
+    margin-top: 60px;
+
+    a{
+        color: $color-white;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        text-transform: uppercase;
+
+        &[href^="mailto:"]{
+            font-weight: 300;
+            text-transform: lowercase;
+        }
+
+        &:hover{
+            color: $color-white;
+            text-decoration: none;
+        }
+    }
+
+    p{
+        margin: 0;
+        padding: 0;
+    }
+}

@@ -1,0 +1,223 @@
+$color-white: #fff;
+$color-black: #000;
+$color-dark-grey: #33434A;
+$color-light-grey:#D1D7DA;
+$color-grey: #5d6a70;
+$color-creame: #f9f8f3;
+$color-popup-bg:rgba(145, 153, 159, 0.7);
+
+*{
+    margin:0;
+    padding: 0;
+}
+
+@mixin mybtn {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 0;
+    border-radius: 6px;
+    background-color: $color-grey;
+    color: $color-white;
+    padding: 16px 32px;
+    margin-bottom: 10px;
+
+    &:hover{
+        background-color: $color-dark-grey;
+    }
+
+    &:focus{
+        outline: none;
+    }
+}
+
+@font-face{
+    font-family: 'Interstate-Compressed';
+    src: url(InterstateBoldCompressed.otf);
+}
+
+body{
+    font-family: 'Interstate', Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 16px;
+    font-size: 1rem;
+    color: $color-black;
+}
+
+h1{
+    font-family: 'Interstate-Compressed','Interstate', Arial, sans-serif;
+    font-size: 60px;
+    font-size: 3.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-top: 60px;
+}
+
+h2{
+    font-family: 'Interstate-Compressed','Interstate', Arial, sans-serif;
+    font-size: 50px;
+    font-size: 2.8125rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+h3{
+    font-family: 'Interstate-Compressed','Interstate', Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+h4{
+    font-family: 'Interstate-Compressed','Interstate', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.space{
+    margin-top:50px;
+}
+
+ol, ul, dl{
+    margin-left: 36px;
+}
+
+.listheading{
+    margin-bottom: 0;
+    font-weight: 900;
+}
+
+a{
+    color: #377EB8;
+    text-decoration: none;
+
+    &:hover{
+        color: #377EB8;
+        text-decoration: underline;
+    }
+
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto; 
+}
+    
+@media (min-width: 576px) {
+      .container {
+        max-width: 540px; 
+    } 
+}
+    
+@media (min-width: 768px) {
+      .container {
+        max-width: 720px; 
+    } 
+}
+
+@media (min-width: 992px) {
+      .container {
+        max-width: 960px; 
+    } 
+}
+    
+@media (min-width: 1200px) {
+      .container {
+        max-width: 1140px; 
+    } 
+}
+
+
+.h1area{
+    align-items: center;
+    
+    button{
+        margin-top: 65px;
+    }
+}
+
+.h2area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.moveright{
+    display: flex;
+    justify-content: flex-end;
+}
+
+button{
+    @include mybtn;
+}
+
+.sidemenu{
+    @include mybtn;
+    display:block;
+    background-color:transparent;
+    color:black;
+    width:100%;
+    text-align: left;
+    padding: 17px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.sidemenushow{
+    background-color:#90999e;
+}
+
+.tabmenu a:hover,.sidemenushow:hover{
+    background: #d1d7da;
+    text-decoration: none;
+    color: black;
+}
+
+#download{
+    background-color: transparent;
+}
+
+input{
+    border: none;
+    border-bottom: 1px solid $color-grey;
+    color: $color-grey;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: transparent;
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.logindboks{
+    margin: 40px 0 70px;
+    padding: 15px 30px;
+    background-color: $color-creame;
+    border-radius: 6px;
+
+    h1{
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .h1area{
+        .moveright{
+            justify-content: flex-start;
+        }
+
+        button{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}

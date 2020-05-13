@@ -1,0 +1,81 @@
+.popupbg{
+    background: $color-popup-bg;
+
+    button{
+        margin-top: 10px;
+    }
+}
+
+.popupshow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index:2;
+}
+
+.popup{
+    display: none;
+}
+
+#lukpopup{
+    cursor: pointer;
+}
+
+.switcharea{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    label{
+        border: none;
+        color: $color-grey;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        font-weight: 400;
+    }
+}
+
+[type="file"] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+  }
+  
+  [type="file"] + label {
+    cursor: pointer;
+    font-weight: 400;
+    @include mybtn;
+  
+  }
+
+  .valgtprojekt{
+    border: 1px solid $color-grey;
+    background: none;
+    padding: 20px;
+    color: $color-grey;
+  }
+
+  .alignform{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  select{
+    border: none;
+    padding: 50px;
+    height: 50px;
+    color: $color-white;
+    background-color: $color-grey;
+    font-size: 0.75rem;
+
+  
+
+    &:focus{
+        outline: none;
+    }
+  }
