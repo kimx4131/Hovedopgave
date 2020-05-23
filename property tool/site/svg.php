@@ -57,14 +57,14 @@
         }
 
         .reseveretpopup{
-            border-bottom: 35px solid #ffd600;
+            border-bottom: 35px solid #fcd703; /*Gul*/
             border-left: 35px solid transparent;
             border-right: 35px solid transparent;
             width: 100%;
         }
 
         .udlejerpopup{
-            border-bottom: 35px solid #c60018;
+            border-bottom: 35px solid #c62127;/*Rød*/
             border-left: 35px solid transparent;
             border-right: 35px solid transparent;
             width: 100%;
@@ -188,14 +188,13 @@
                     <div class="col-3 popupclose"><p>X</p></div>
                 </div>
                 <!-- <hr> -->
-                 <!-- <img src="<?php
-                //echo 'projekter/'.$projekt['projektnavn'].'/'.$bolig['plantegning'] ?>" alt="Plantegning" style="width:100%;">-->
+                 <img src="<?php echo 'projekter/'.$projekt['projektnavn'].'/'.$bolig['plantegning'] ?>" alt="Plantegning" style="width:100%;">
                 <!-- <hr> -->
                 <div class="row informationarea">
                     <div class="col-4">
                         <div class="row colnopadding">
                             <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+                                <img src="img/icons/areal.png" alt="Ikon">
                             </div>
                             <div class="col-9">
                                 <p><?php echo $bolig['kvm'] ?> <small>m<sup>2</sup></small></p>
@@ -204,7 +203,7 @@
                         </div>
                         <div class="row colnopadding">
                             <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+                                <img src="img/icons/etage.png" alt="Ikon">
                             </div>
                             <div class="col-9">
                                 <p><?php if($bolig['etage'] == 0){
@@ -217,7 +216,7 @@
                         </div>
                         <div class="row colnopadding">
                             <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+                                <img src="img/icons/room.png" alt="Ikon">
                             </div>
                             <div class="col-9">
                                 <p><?php echo $bolig['vaerelser'] ?></p>
@@ -232,7 +231,7 @@
                     <div class="col-4">
                         <div class="row colnopadding">
                             <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+                                <img src="img/icons/elevator.png" alt="Ikon">
                             </div>
                             <div class="col-9">
                                 <p><?php if($bolig['elevator'] == 0){
@@ -245,7 +244,7 @@
                         </div>
                         <div class="row colnopadding">
                             <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+                                <img src="img/icons/shower.png" alt="Ikon">
                             </div>
                             <div class="col-9">
                                 <p><?php echo $bolig['bad'] ?></p>
@@ -274,7 +273,7 @@
                     <div class="col-4">
                         <div class="row colnopadding">
                             <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+                                <img src="img/icons/altan.png" alt="Ikon">
                             </div>
                             <div class="col-9">
                                 <p><?php if($bolig['altan'] == 0){
@@ -291,7 +290,7 @@
                         </div>
                         <div class="row colnopadding">
                             <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+                                <img src="img/icons/altan.png" alt="Ikon">
                             </div>
                             <div class="col-9">
                                 <p><?php if($bolig['terasse'] == 0){
@@ -328,6 +327,7 @@
     <script>   
 
     let mobiluser = false;
+    //Hvis matcher regex (i = case-insensitive)
     if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)){
         mobiluser = true;
     }else{
@@ -355,87 +355,96 @@
         let singel = idarray[i].id;
         singelid.push(singel.slice(2));
     };
+    //De første to i arryen er baggrund og lejlighed, dem fjerne jeg
     singelid.shift();
     singelid.shift();
     
-    //Henter popboksens div med status info
+    //Gennemgår arrayen "singelid"
     for(i=0;i<singelid.length; i++){
+        //Henter popupen og får klasse navnet
         childofpopup = document.getElementById('pop'+singelid[i]).children;
         classofpopup = childofpopup[0].className;
 
         for(j=0;j<childofpopup.length;j++){
             let classliste = childofpopup[j].className;
         }
-
+        //Hvis klasse navnet er ....
         if(classofpopup == "status2"){
+            //Henter polygonen
             let ledig = document.getElementById('nr'+singelid[i]).children;
             ledig[0].style.fill="transparent";
+            //Farve polygonen når mussen kommer ind over den
             ledig[0].addEventListener('mouseover', function(){
-                ledig[0].style.fill="green";
+                ledig[0].style.fill="b2d234"; //Grøn
             });
             ledig[0].addEventListener('mouseout', function(){
                 ledig[0].style.fill="transparent";
             });
 
         } else if(classofpopup == "status1"){
+            //Henter polygonen og farver
             let ledig = document.getElementById('nr'+singelid[i]).children;
-            ledig[0].style.fill="#c60018";
+            ledig[0].style.fill="#c62127"; //Rød
 
         }else if(classofpopup == "status3"){
+            //Henter polygonen og farver
             let ledig = document.getElementById('nr'+singelid[i]).children;
-            ledig[0].style.fill="#ffd600";
-
+            ledig[0].style.fill="#fcd703"; //Gul
         }
     }
-
 
     //Lytter på alle polygoner og "afspiller" funktioner ved mus over og ud
     let theParent = document.querySelector("#Lejligheder");
     for (i = 0; i < theParent.children.length; i++) {
         let childElement = theParent.children[i];
-        childElement.addEventListener('mouseover', mouseover, false);
-        childElement.addEventListener('mouseout', mouseout, false);
+        childElement.addEventListener('mouseover', mouseover);
+        childElement.addEventListener('mouseout', mouseout);
     }
-
-
 
     // Hvad der skal gøre ved mus over
     function mouseover() {
+        //Henter id når man mouseover
         let boksid = this.id.slice(2);
         let boks = document.getElementById('pop'+boksid);
         let bokspoligon = document.getElementById('nr'+boksid);
 
         boks.style.display = "block";
 
+        //Størrelse på popup vinduet
         let popupwidth = boks.offsetWidth; //400
         let popupheight = boks.offsetHeight; //525
+
+        //Størrelse på billedet som danner iframe
         let windowwidth = document.getElementsByTagName('image')[0].width.animVal.value; //1000
         let windowheigth = document.getElementsByTagName('image')[0].height.animVal.value; //667
 
-        let imageBg = document.getElementsByTagName("baggrund").offsetWidth;
-
+        //Henter musen posistion ud fra den side som iframes
         let x = event.clientX;
         let y = event.clientY;
 
+        //Hvis det er fra mobilen eller tablets
         if(mobiluser == true){
+            //Popup fylder hele iframen
             boks.style.display = "block";
             boks.style.top = "0px";
             boks.style.left = "0px";
             boks.style.width = "100%";
             boks.style.height = "100%";
 
+            //Hvis der klikkes på mere knappen
             let readmorebtn = boks.getElementsByTagName('button')[0];
             readmorebtn.addEventListener('click', function hiddenfunc(){
                 togolink(boksid);
-            }, false); 
+            }); 
 
+            //Hvis der klikkes på kryds
             let test = boks.getElementsByClassName('popupclose')[0];
             test.addEventListener('click', function hiddenfunc(){
                 boks.style.display = "none";
             });
 
-            
         }else{
+            //Fra computeren
             //WIDTH
             //Hvis afstanden fra musen x til kanten højre er mindre en popupens brede
             if((windowwidth - x)<popupwidth){
@@ -454,14 +463,13 @@
                 boks.style.top = (y+10)+'px';
             }
 
+            //Hvis der klikkes på polygonen
             bokspoligon.addEventListener('click', function hiddenfunc(){
                 togolink(boksid);
-            }, false); 
+            }); 
         }
     }
 
-
-    //hvad der skal væres ved mus væk
     function mouseout() {
         let boksid = this.id.slice(2);
         let boks = document.getElementById('pop'+boksid);
@@ -472,8 +480,8 @@
         
     }
 
+    //Åbener en ny side med flere informationer hvos status er ledig
     function togolink(boksid){
-        // let boksid = this.id.slice(2);
         let boks = document.getElementById('pop'+boksid);
         let link = boks.firstElementChild;
 

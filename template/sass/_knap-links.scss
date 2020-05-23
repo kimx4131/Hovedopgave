@@ -1,0 +1,43 @@
+.wp-block-buttons .wp-block-button,input[type=submit],.more-link{
+    margin-top: $space-half;
+    margin-bottom: $space-half;
+}
+
+.wp-block-button a, button, .more-link{
+    padding: 16px 32px;
+}
+
+input[type=submit]{
+    padding: 23px 32px;
+}
+
+button, .wp-block-button, .wp-block-button__link,input[type=submit], .more-link{
+    text-transform: uppercase;
+    font-family: $font;
+    font-weight: lighter;
+    font-size: 11px;
+    letter-spacing: 1.1px;
+    &:focus{
+        outline: none;
+    }
+}
+
+input[type=submit], .more-link{
+    background-color: $grey2; //FARVE
+    border: none;
+    color: $white; //FARVE
+    border-radius: 4px;
+}
+
+.more-link{
+    display: inline-block;
+
+    &:hover{
+        color: $white; //FARVE
+        text-decoration: none;
+    }
+
+    &:visited{
+        color: $white; //FARVE
+    }
+}

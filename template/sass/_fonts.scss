@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'interstate';
+    src: url('font/interstate-regular-webfont.eot');
+    src: url('font/interstate-regular-webfont.eot') format('embedded-opentype'),
+         url('font/interstate-regular-webfont.woff2') format('woff2'),
+         url('font/interstate-regular-webfont.woff') format('woff'),
+         url('font/interstate-regular-webfont.ttf') format('truetype'),
+         url('font/interstate-regular-webfont.svg#interstate-regular-webfont') format('svg');
+}
+@font-face {
+    font-family: 'interstate';
+    font-weight: bold;    
+    src: url('font/interstate-bold-webfont.eot');
+    src: url('font/interstate-bold-webfont.eot') format('embedded-opentype'),
+         url('font/interstate-bold-webfont.woff2') format('woff2'),
+         url('font/interstate-bold-webfont.woff') format('woff'),
+         url('font/interstate-bold-webfont.ttf') format('truetype'),
+         url('font/interstate-bold-webfont.svg#interstate-bold-webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'interstate';
+    font-weight: lighter;
+    src: url('font/interstate-light-webfont.eot');
+    src: url('font/interstate-light-webfont.eot') format('embedded-opentype'),
+         url('font/interstate-light-webfont.woff2') format('woff2'),
+         url('font/interstate-light-webfont.woff') format('woff'),
+         url('font/interstate-light-webfont.ttf') format('truetype'),
+         url('font/interstate-light-webfont.svg#interstate-light-webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'interstateCompressed';
+    src: url('font/interstate-boldcompressed-webfont.eot');
+    src: url('font/interstate-boldcompressed-webfont.eot') format('embedded-opentype'),
+         url('font/interstate-boldcompressed-webfont.woff2') format('woff2'),
+         url('font/interstate-boldcompressed-webfont.woff') format('woff'),
+         url('font/interstate-boldcompressed-webfont.ttf') format('truetype'),
+         url('font/interstate-boldcompressed-webfont.svg#interstate-boldcompressed-webfont') format('svg');        
+}

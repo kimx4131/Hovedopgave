@@ -2,7 +2,7 @@
 #masthead{
     background-color: $grey0; //FARVE
     // padding: $space-half/1.2 0;
-    font-family: 'interstate', Arial, sans-serif;
+    font-family: $font;
     font-weight: 700;
     height: 72px;
     display: flex;
@@ -19,7 +19,18 @@
     }
 
     .site-title{
-        display: none;
+        // display: none;
+        margin: 0;
+
+        a{
+            color: $black;
+            font-size: 1.3rem;
+
+            &:hover{
+                text-decoration: none !important;
+            }
+        }
+
     }
 }
 
@@ -58,7 +69,7 @@
             }
 
             &:hover{
-                text-decoration: underline;
+                color: $magenta2;
             }
         }
     }

@@ -91,7 +91,7 @@
                 };
             };
 
-            $passwordconn = true;
+            $passwordconn = false;
             //Ændre kodeord
             if(isset($_POST['changepassword'])){
                 $passwordone = mysqli_real_escape_string($conn, $_POST['passwordone']);
@@ -159,7 +159,6 @@
                             <th>Projektnavn</th>
                             <th>Oprettet af</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -172,21 +171,6 @@
                         <tr>
                             <td><?php echo $projekt['projektnavn'] ?></td>
                             <td><?php echo $useridinfoname['navn'] ?></td>
-                            <td>
-                                <?php 
-                                // if($useradmin == "ja" OR $username == $useridinfoname['navn']){
-                                //     $projektid = $projekt['id_projekt'];
-                                //     echo'
-                                //     <form>
-                                //         <!-- <img src="img/icons/ret.png" alt="ret ikon"> -->
-                                //         <input type="text" name="idret" value="'.$projekt['id_projekt'].'" style="display:none;">
-                                //         <input type="submit" name="ret" class="ret" id="ret" value="">
-                                //     </form>';
-                                // } else {
-                                //     echo "";
-                                // }
-                                ?>
-                            </td>
                             <td>
                             <?php 
                                 if($useradmin == "ja" OR $username == $useridinfoname['navn']){
