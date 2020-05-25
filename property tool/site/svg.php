@@ -458,7 +458,15 @@
             //Hvis afstanden fra musen y til bunden er mindre en højden på popupen
             if((windowheigth - y)<popupheight){
                 //Placere popupen over musen
-                boks.style.top = (y-popupheight-10)+'px';
+                //Tjekker om popupen er højre end fra musen til toppen
+                if(popupheight > y){
+                    //Placere popupen over musen og flytter ned ned det stykke som går over kanten
+                    boks.style.top = ((y-popupheight)+(popupheight-y))+'px';
+                }else{
+                    //Placere popupen over musen
+                    boks.style.top = (y-popupheight-10)+'px';
+                }
+
             } else {
                 boks.style.top = (y+10)+'px';
             }
