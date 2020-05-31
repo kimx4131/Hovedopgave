@@ -8,6 +8,7 @@
 <body>
     <?php include 'inc/db.php' ?>
     <?php include 'inc/nav.php' ?>
+    <?php include 'inc/mailnewuser.php' ?>
 
     <?php 
         if(isset($_SESSION['adgang'])){
@@ -59,47 +60,17 @@
                     $result = mysqli_query($conn, $sql) or die("Query virker overhoved ikke - upload");
 
                     $to = $email;
-                        $subject = "My subject";
-                        $txt ='
-                            <div id="baggrund" style="background-color: #f9f8f3; padding-top: 20px; padding-bottom: 20px; font-family: arial;"><br />
-                            <table style="background-color: white; width: 100%; max-width: 600px; margin-right: auto; margin-left: auto; border-collapse: collapse;">
-                            <tbody>
-                            <tr>
-                            <td colspan="2">&nbsp;<img class="mar-right" style="margin-right: 25px; margin-left: auto; margin-top: 7px; display: block; margin-bottom: 15px;" alt="Newsec logo" src="https://www.newsec.dk/globalassets/denmark/images/e-mail-grafik/newsec-logo.jpg" height="58" width="117" /></td>
-                            </tr>
-                            <tr>
-                            <td class="pad-left" style="padding-left: 25px; padding-right: 25px; color: black;" colspan="2">
-                            <p>Kære&nbsp;#Navn#</p>
-                            <p>&nbsp;</p>
-                            <p>Vi har modtaget din opsigelse.&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>Du vil inden for få dage modtage en e-mail eller et brev med nærmere oplysninger om fraflytning, flyttesyn mv.</p>
-                            <p>Når du modtager bekræftelsen på din opsigelse, bedes du venligst være opmærksom på de datoer der bliver nævnt i brevet, at de stemmer overens med de ønskede datoer for fraflytning.</p>
-                            <p>&nbsp;&nbsp;</p>
-                            <p>Venlig hilsen</p>
-                            <p>Newsec<br />Commercial</p>
-                            <p>&nbsp;</p>
-                            </td>
-                            </tr>
-                            <tr class="hide-mobil" style="background-color: #33434b; color: white; font-size: 9px;">
-                            <td class="pad-left" style="padding-left: 25px;">
-                            <p style="margin-bottom: 0; margin-top: 20px;">Newsec<br /> Lyngby Hovedgade 4 <br /> 2800 Kgs. Lyngby</p>
-                            <a style="color: white;" href="https://www.newsec.dk">www.newsec.dk</a>
-                            <p style="font-size: 7px; margin-top: 10px; margin-bottom: 20px;">THE FULL SERVICE PROPERTY HOUSE</p>
-                            </td>
-                            <td style="align-content: flex-end;">
-                            <div class="mar-right" style="float: right; margin-bottom: 5px; padding-bottom: 0; margin-top: auto; margin-right: 25px;">
-                            <p style="margin-bottom: 0; padding-left: 5px;">Følg os</p>
-                            <p class="circle-mobil" style="display: inline-block; width: 30px; height: 30px; background-color: #ffffff; border-radius: 50%; margin: 5px;"><a title="https://www.facebook.com/NewsecGroup/" href="https://www.facebook.com/NewsecGroup/" target="_blank"><img class="social" style="width: 12px; height: 12px; margin-right: auto; margin-left: 30%; margin-top: 30%; margin-bottom: auto; display: inline-block;" alt="facebook link" src="/EPiServer/CMS/Content/globalassets/denmark/images/e-mail-grafik/facebook.png,,120343?epieditmode=False" height="42" width="42" /></a></p>
-                            <p class="circle-mobil" style="display: inline-block; width: 30px; height: 30px; background-color: #ffffff; border-radius: 50%; margin-bottom: 5px; margin-left: 0px; margin-right: 0px; margin-top: 5px;"><a title="https://www.linkedin.com/company/newsec/" href="https://www.linkedin.com/company/newsec/"><img class="social" style="width: 12px; height: 12px; margin-right: auto; margin-left: 30%; margin-top: 30%; margin-bottom: auto; display: inline-block;" alt="linkin link" src="/EPiServer/CMS/Content/globalassets/denmark/images/e-mail-grafik/linkin.png,,120344?epieditmode=False" height="40" width="40" /></a></p>
-                            </div>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
-                            </div>';
-                        $headers = "From: kim@kragesand.dk";
-                        mail($to,$subject,$txt,$headers);
+                    $subject = "Velkommen til Newsec Property Tool";
+                    $message = '<p>K&aelig;re '.$name.'</p>
+                    <p>Du er nu oprettet som bruger p&aring; Newsec Property Tool</p>
+                    <p>Du kan logge p&aring; her: <a href="https://property-tool.kragesand.dk/">https://property-tool.kragesand.dk/</a></p>
+                    <p>Din kode er: Newsec123</p>
+                    <p>F&oslash;rste gang du logger p&aring;, skal du &aelig;ndre dit kodeord.</p>';
+                    $txt = $mailstart.$message.$mailend;
+                    $headers = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                    $headers .= 'From: ' . "Newsec Property Tool <kim@kragesand.dk>" . "\r\n"; 
+                    mail($to,$subject,$txt,$headers);
             
                     $addusermsg = "Bruger er oprettet";
                     echo "<script>window.location.href='brugeradmin.php';</script>";
@@ -129,58 +100,31 @@
             //Nultil kodeord
             if(isset($_POST['nulstil'])){
                 $idbruger = mysqli_real_escape_string($conn, $_POST['idbruger']);
-
+                
                 $salt = "ldfjldjf34lksdf4kle" . "Newsec123" . "dkj2fldsjljf34elk";
                 $hashed = hash('sha512', $salt);
 
                 $sql = "UPDATE bruger SET kodeord='$hashed' WHERE bruger.id_bruger='$idbruger'";
 
+                //Henter til at sende email
+                $sqluser = "SELECT * FROM bruger WHERE id_bruger = $idbruger";
+                $resultuser = mysqli_query($conn, $sqluser);
+                $user = mysqli_fetch_assoc($resultuser); 
+
                 $usersconn = false;
                 if(mysqli_query($conn, $sql)){
                     $usersconn = true;
 
-                    $to = "kim.k.b@hotmail.com"; //$email
-                        $subject = "My subject";
-                        $txt ='
-                            <div id="baggrund" style="background-color: #f9f8f3; padding-top: 20px; padding-bottom: 20px; font-family: arial;"><br />
-                            <table style="background-color: white; width: 100%; max-width: 600px; margin-right: auto; margin-left: auto; border-collapse: collapse;">
-                            <tbody>
-                            <tr>
-                            <td colspan="2">&nbsp;<img class="mar-right" style="margin-right: 25px; margin-left: auto; margin-top: 7px; display: block; margin-bottom: 15px;" alt="Newsec logo" src="https://www.newsec.dk/globalassets/denmark/images/e-mail-grafik/newsec-logo.jpg" height="58" width="117" /></td>
-                            </tr>
-                            <tr>
-                            <td class="pad-left" style="padding-left: 25px; padding-right: 25px; color: black;" colspan="2">
-                            <p>Kære&nbsp;#Navn#</p>
-                            <p>&nbsp;</p>
-                            <p>Vi har modtaget din opsigelse.&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>Du vil inden for få dage modtage en e-mail eller et brev med nærmere oplysninger om fraflytning, flyttesyn mv.</p>
-                            <p>Når du modtager bekræftelsen på din opsigelse, bedes du venligst være opmærksom på de datoer der bliver nævnt i brevet, at de stemmer overens med de ønskede datoer for fraflytning.</p>
-                            <p>&nbsp;&nbsp;</p>
-                            <p>Venlig hilsen</p>
-                            <p>Newsec<br />Commercial</p>
-                            <p>&nbsp;</p>
-                            </td>
-                            </tr>
-                            <tr class="hide-mobil" style="background-color: #33434b; color: white; font-size: 9px;">
-                            <td class="pad-left" style="padding-left: 25px;">
-                            <p style="margin-bottom: 0; margin-top: 20px;">Newsec<br /> Lyngby Hovedgade 4 <br /> 2800 Kgs. Lyngby</p>
-                            <a style="color: white;" href="https://www.newsec.dk">www.newsec.dk</a>
-                            <p style="font-size: 7px; margin-top: 10px; margin-bottom: 20px;">THE FULL SERVICE PROPERTY HOUSE</p>
-                            </td>
-                            <td style="align-content: flex-end;">
-                            <div class="mar-right" style="float: right; margin-bottom: 5px; padding-bottom: 0; margin-top: auto; margin-right: 25px;">
-                            <p style="margin-bottom: 0; padding-left: 5px;">Følg os</p>
-                            <p class="circle-mobil" style="display: inline-block; width: 30px; height: 30px; background-color: #ffffff; border-radius: 50%; margin: 5px;"><a title="https://www.facebook.com/NewsecGroup/" href="https://www.facebook.com/NewsecGroup/" target="_blank"><img class="social" style="width: 12px; height: 12px; margin-right: auto; margin-left: 30%; margin-top: 30%; margin-bottom: auto; display: inline-block;" alt="facebook link" src="/EPiServer/CMS/Content/globalassets/denmark/images/e-mail-grafik/facebook.png,,120343?epieditmode=False" height="42" width="42" /></a></p>
-                            <p class="circle-mobil" style="display: inline-block; width: 30px; height: 30px; background-color: #ffffff; border-radius: 50%; margin-bottom: 5px; margin-left: 0px; margin-right: 0px; margin-top: 5px;"><a title="https://www.linkedin.com/company/newsec/" href="https://www.linkedin.com/company/newsec/"><img class="social" style="width: 12px; height: 12px; margin-right: auto; margin-left: 30%; margin-top: 30%; margin-bottom: auto; display: inline-block;" alt="linkin link" src="/EPiServer/CMS/Content/globalassets/denmark/images/e-mail-grafik/linkin.png,,120344?epieditmode=False" height="40" width="40" /></a></p>
-                            </div>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
-                            </div>';
-                        $headers = "From: kim@kragesand.dk";
-                        mail($to,$subject,$txt,$headers);
+                    $to = $user['email']; 
+                    $subject = "Din kode er nulstillet";
+                    $message = '<p>K&aelig;re '.$user['navn'].'</p>
+                    <p>Din kode er blevet nultstillet til: Newsec123</p>
+                    <p>Du bedes logge p&aring; <a href="https://property-tool.kragesand.dk/">https://property-tool.kragesand.dk/</a> og &aelig;ndre dit kodeord</p>';
+                    $txt = $mailstart.$message.$mailend;
+                    $headers = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                    $headers .= 'From: ' . "Newsec Property Tool <kim@kragesand.dk>" . "\r\n"; 
+                    mail($to,$subject,$txt,$headers);
 
                     $addusermsg = "Brugers kode er nulstilt";
                 } else {
@@ -236,47 +180,14 @@
                         $usersconn = true;
                         $addusermsg = "Bruger er rettet";
 
-                        $to = $email;
-                        $subject = "My subject";
-                        $txt ='
-                            <div id="baggrund" style="background-color: #f9f8f3; padding-top: 20px; padding-bottom: 20px; font-family: arial;"><br />
-                            <table style="background-color: white; width: 100%; max-width: 600px; margin-right: auto; margin-left: auto; border-collapse: collapse;">
-                            <tbody>
-                            <tr>
-                            <td colspan="2">&nbsp;<img class="mar-right" style="margin-right: 25px; margin-left: auto; margin-top: 7px; display: block; margin-bottom: 15px;" alt="Newsec logo" src="https://www.newsec.dk/globalassets/denmark/images/e-mail-grafik/newsec-logo.jpg" height="58" width="117" /></td>
-                            </tr>
-                            <tr>
-                            <td class="pad-left" style="padding-left: 25px; padding-right: 25px; color: black;" colspan="2">
-                            <p>Kære&nbsp;#Navn#</p>
-                            <p>&nbsp;</p>
-                            <p>Vi har modtaget din opsigelse.&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>Du vil inden for få dage modtage en e-mail eller et brev med nærmere oplysninger om fraflytning, flyttesyn mv.</p>
-                            <p>Når du modtager bekræftelsen på din opsigelse, bedes du venligst være opmærksom på de datoer der bliver nævnt i brevet, at de stemmer overens med de ønskede datoer for fraflytning.</p>
-                            <p>&nbsp;&nbsp;</p>
-                            <p>Venlig hilsen</p>
-                            <p>Newsec<br />Commercial</p>
-                            <p>&nbsp;</p>
-                            </td>
-                            </tr>
-                            <tr class="hide-mobil" style="background-color: #33434b; color: white; font-size: 9px;">
-                            <td class="pad-left" style="padding-left: 25px;">
-                            <p style="margin-bottom: 0; margin-top: 20px;">Newsec<br /> Lyngby Hovedgade 4 <br /> 2800 Kgs. Lyngby</p>
-                            <a style="color: white;" href="https://www.newsec.dk">www.newsec.dk</a>
-                            <p style="font-size: 7px; margin-top: 10px; margin-bottom: 20px;">THE FULL SERVICE PROPERTY HOUSE</p>
-                            </td>
-                            <td style="align-content: flex-end;">
-                            <div class="mar-right" style="float: right; margin-bottom: 5px; padding-bottom: 0; margin-top: auto; margin-right: 25px;">
-                            <p style="margin-bottom: 0; padding-left: 5px;">Følg os</p>
-                            <p class="circle-mobil" style="display: inline-block; width: 30px; height: 30px; background-color: #ffffff; border-radius: 50%; margin: 5px;"><a title="https://www.facebook.com/NewsecGroup/" href="https://www.facebook.com/NewsecGroup/" target="_blank"><img class="social" style="width: 12px; height: 12px; margin-right: auto; margin-left: 30%; margin-top: 30%; margin-bottom: auto; display: inline-block;" alt="facebook link" src="/EPiServer/CMS/Content/globalassets/denmark/images/e-mail-grafik/facebook.png,,120343?epieditmode=False" height="42" width="42" /></a></p>
-                            <p class="circle-mobil" style="display: inline-block; width: 30px; height: 30px; background-color: #ffffff; border-radius: 50%; margin-bottom: 5px; margin-left: 0px; margin-right: 0px; margin-top: 5px;"><a title="https://www.linkedin.com/company/newsec/" href="https://www.linkedin.com/company/newsec/"><img class="social" style="width: 12px; height: 12px; margin-right: auto; margin-left: 30%; margin-top: 30%; margin-bottom: auto; display: inline-block;" alt="linkin link" src="/EPiServer/CMS/Content/globalassets/denmark/images/e-mail-grafik/linkin.png,,120344?epieditmode=False" height="40" width="40" /></a></p>
-                            </div>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
-                            </div>';
-                        $headers = "From: kim@kragesand.dk";
+                        $to = $email;  
+                        $subject = "Dine oplysninger er opdateret";
+                        $message = '<p>K&aelig;re '.$navn.'</p>
+                        <p>Dine oplysninger er blevet opdateret.</p>';
+                        $txt = $mailstart.$message.$mailend;
+                        $headers = 'MIME-Version: 1.0' . "\r\n";
+                        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                        $headers .= 'From: ' . "Newsec Property Tool <kim@kragesand.dk>" . "\r\n"; 
                         mail($to,$subject,$txt,$headers);
 
                         echo "<script>window.location.href='brugeradmin.php';</script>";
@@ -396,7 +307,6 @@
         edituserpopup.classList.add("popupshow");
     };
 
-
     // Luk popup - tilføj bruger
     let lukpopup = document.querySelector('#lukpopup');
 
@@ -416,6 +326,7 @@
     </script>
 
 <?php 
+//Kan først kalde funtionen efter den er indlæst
 if(isset($id)){
     echo '<script>
     useredit();

@@ -202,7 +202,7 @@
                 </ul>
                 <p class="listheading">Step 2: Upload CSV fil (Excel)</p>
                 <ul>
-                    <li>Download denne skabelon</li>
+                    <li><a href="img/skabelone.csv" target="_blank">Download denne skabelon</a></li>
                     <li>Udfylde alle felter (pånær dem der står “NULL” i)</li>
                     <li>Eksporter som CSV fil (Web teamet kan hjælpe)</li>
                     <li>Vælg “Boligliste” i menuen </li>

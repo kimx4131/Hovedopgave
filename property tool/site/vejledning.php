@@ -183,7 +183,7 @@
                 step3.style.display="none";
 
             }
-            else if(url == seturl+"#step3" ){//
+            else if(url == seturl+"#step3" ){
                 tabintro.classList.remove("sidemenushow");
                 tabstep1.classList.remove("sidemenushow");
                 tabstep2.classList.remove("sidemenushow");
@@ -213,10 +213,6 @@
             url = seturl+"#step3";
             tabmenu();
         }
-
-        
-
-
 
     </script>
 </body>

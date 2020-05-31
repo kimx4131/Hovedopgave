@@ -35,12 +35,7 @@
             width: 12%;
         }
 
-        thead tr{
-            /* border-bottom: 3px solid gray; */
-        }
-
         tbody tr{
-            /* border-bottom: 1px solid grey; */
             font-size:0.85rem;
         }
 
@@ -48,12 +43,7 @@
             background-color:white;
         }
 
-        /* tbody tr:nth-child(even){
-            background-color:red;
-        } */
-
         tbody tr:hover{
-            /* background-color:grey; */
             opacity:0.5;
         }
 

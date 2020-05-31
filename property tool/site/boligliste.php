@@ -66,8 +66,6 @@
                         $lejlnr = NULL; 
                         if (isset($column[1])) { $lejlnr = mysqli_real_escape_string($conn, $column[1]);}
 
-                        // $idp = ""; 
-                        // if (isset($column[2])) { $idp = mysqli_real_escape_string($conn, $column[2]);}
                         $idp = mysqli_real_escape_string($conn, $_POST['valgtprojekt']);
                         
                         $postnr = ""; 
@@ -160,7 +158,7 @@
                 }
             }
 
-            //ret bruger
+            //ret bolig
             if(isset($_POST['opdaterbolig'])){
                 $vejnavn = mysqli_real_escape_string($conn, $_POST['vejnavn']);
                 $husnr = mysqli_real_escape_string($conn, $_POST['husnr']);
@@ -297,7 +295,7 @@
                     $sletconn = true;
 
                     $files = glob("projekter/".$projektnavn."/".$plantegning); // get all file names
-                    foreach($files as $file){ // iterate files
+                    foreach($files as $file){
                     if(is_file($file))
                         unlink($file); // delete file
                     };
@@ -416,7 +414,7 @@
         </div><!--  Row -->
         <div class="row space">
             <div class="col-12">
-                <h3>Iframe kode til boligliste</h3>
+                <h3>Iframe kode til isometri</h3>
                 <table>
                     <thead>
                         <tr>
@@ -429,14 +427,14 @@
                         <?php foreach($iframeprojekter as $iframeprojekt): ?>
                         <tr>
                             <td><?php echo $iframeprojekt['projektnavn'] ?></td>
-                            <td>&lt;iframe style="width:100%;height:400px;" scrolling="yes" frameborder="0" src="<?php echo $url."table.php?projekt=".$iframeprojekt['id_projekt']?>"&gt; &lt;/iframe&gt;</td>
+                            <td>&lt;iframe style="width:100%;height:500px;" scrolling="yes" frameborder="0" src="<?php echo $url."table.php?projekt=".$iframeprojekt['id_projekt']?>"&gt; &lt;/iframe&gt;</td>
                             <td></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> <!-- row -->
     </div> <!--  Container -->
 
     <div class="popup" id="addcsvpopup"><?php include 'popup/csvadd.php' ?></div>
@@ -553,6 +551,7 @@
     </script>
 
 <?php 
+//Kan først kalde funtionen efter den er indlæst
 if(isset($id)){
     echo '<script>
     useredit();
@@ -561,6 +560,7 @@ if(isset($id)){
 ?>
 
 <?php 
+//Kan først kalde funtionen efter den er indlæst
 if(isset($idplan)){
     echo '<script>
     plan();

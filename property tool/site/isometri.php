@@ -151,7 +151,6 @@
                             </td>
                             <td>
                                 <form>
-                                    <!-- <img src="img/icons/ret.png" alt="ret ikon"> -->
                                     <input type="text" name="idisometri" value="<?php echo $isometri['id_isometri'] ?>" style="display:none;">
                                     <input type="submit" class="kode" id="seeiframekode" value="">
                                 </form>
@@ -226,6 +225,7 @@
     </script>
 
 <?php 
+//Kan først kalde funtionen efter den er indlæst
 if(isset($id)){
     echo '<script>
     useredit();

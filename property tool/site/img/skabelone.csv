@@ -1,3 +1,3 @@
 id_bolig;lejlnr;id_projekt;postnr;vejnavn;husnr;etage;side;bypost;kvm;vaerelser;lejeraw;lejegebyr;acontovarme;acontovand;depositum;forudbetalt;toilet;bad;ledigpr;boligstatus;plantegning;URL;depotrum;altan;terrasse;elevator
-NULL;1;NULL;2860;Gladsaxevej;386;1;lejl. 1;S¿borg;106;3;12900;14313;707;442;3;1;1;1;15.03.2020;2;NULL;NULL;1;0;1;1
-NULL;2;NULL;2860;Gladsaxevej;386;1;lejl. 2;S¿borg;78;2;11500;12540;520;325;3;1;1;1;15.03.2020;2;NULL;NULL;1;0;1;1
+NULL;1;NULL;2860;Gladsaxevej;386;1;lejl. 1;Soeborg;106;3;12900;14313;707;442;3;1;1;1;15.03.2020;2;NULL;NULL;1;0;1;1
+NULL;2;NULL;2860;Gladsaxevej;386;1;lejl. 2;Soeborg;78;2;11500;12540;520;325;3;1;1;1;15.03.2020;2;NULL;NULL;1;0;1;1

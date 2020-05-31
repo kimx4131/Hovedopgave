@@ -82,8 +82,6 @@
                     </div>
                     <button type="submit" name="submit" class="w-100">Log ind</button>
                 </form>
-                <p><a href="#">Glemt kodeord</a></p>
-                <p><a href="#">Har du ikke adgang?</a></p>
             </div>
         </div>
     </div>
