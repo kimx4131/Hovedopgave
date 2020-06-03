@@ -5,6 +5,26 @@
     <title>Isometri</title>
 
     <style>
+    @font-face{
+        font-family: 'interstatecompressed';
+        src: url('font/interstate-boldcompressed-webfont.eot');
+        src: url('font/interstate-boldcompressed-webfont.eot') format('embedded-opentype'),
+         url('font/interstate-boldcompressed-webfont.woff2') format('woff2'),
+         url('font/interstate-boldcompressed-webfont.woff') format('woff'),
+         url('font/interstate-boldcompressed-webfont.ttf') format('truetype'),
+         url('font/interstate-boldcompressed-webfont.svg#interstate-boldcompressed-webfont') format('svg'); 
+    }
+
+    @font-face {
+    font-family: 'interstate';
+    src: url('font/interstate-light-webfont.eot');
+    src: url('font/interstate-light-webfont.eot') format('embedded-opentype'),
+         url('font/interstate-light-webfont.woff2') format('woff2'),
+         url('font/interstate-light-webfont.woff') format('woff'),
+         url('font/interstate-light-webfont.ttf') format('truetype'),
+         url('font/interstate-light-webfont.svg#interstate-light-webfont') format('svg');
+    }
+
         polygon{
             opacity: 0.7;
         }
@@ -40,9 +60,9 @@
             flex-wrap: wrap;
             justify-content: space-evenly;
             position: absolute;
-            top: 24px;
-            left: -34px;
-            width: 180px;
+            top: 31px;
+            left: -37px;
+            width: 200px;
         }
 
         .nobanner{
@@ -52,19 +72,20 @@
         .banner p {
             display: inline-block;
             position: absolute;
-            padding: 5px;
+            padding: 6px;
             text-transform: uppercase;
+            font-weight:normal;
         }
 
         .reseveretpopup{
-            border-bottom: 35px solid #fcd703; /*Gul*/
+            border-bottom: 35px solid rgba(252, 215, 3, 0.85); /*Gul*/
             border-left: 35px solid transparent;
             border-right: 35px solid transparent;
             width: 100%;
         }
 
         .udlejerpopup{
-            border-bottom: 35px solid #c62127;/*Rød*/
+            border-bottom: 35px solid rgba(196, 33, 39, 0.85);/*Rød*/
             border-left: 35px solid transparent;
             border-right: 35px solid transparent;
             width: 100%;
@@ -79,10 +100,34 @@
             font-family: 'interstatecompressed', Arial, sans-serif;
             font-size: 1.65rem;
             line-height: 1.65rem;
+            text-transform: uppercase;
         }
 
         .informationarea img{
             width:100%;
+            z-index: 8;
+            position: inherit;
+            filter: invert(1);
+            margin-left: 3.2px;
+            padding: 1px;
+        }
+
+        .cirkelimg{
+            background-color: grey;
+            width: 120%;
+            height: 120%;
+            position: absolute;
+            top: -4px;
+            border-radius: 50%;
+        }
+
+        .informationarea .row{
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .informationarea .colnopadding .col-4{
+            padding: 0;
         }
 
         .colnopadding{
@@ -182,30 +227,32 @@
                             <p><?php echo $ikkeledig ;?></p>
                             <div class="<?php echo $ikkeledigclass;?>"></div>
                         </div>
-                        <p class="popupheader"><?php echo $bolig['vejnavn']." ".$bolig['husnr']." ".$bolig['etage']." ".$bolig['side'].", ".$bolig['bypost']." ".$bolig['postnr'] ?></p>
-                        <small>lejligheds nr. <?php echo $bolig['lejlnr'] ?></small>
+                        <p class="popupheader"><?php echo $bolig['vejnavn']." ".$bolig['husnr']." ".$bolig['etage']." ".$bolig['side'] ?></p>
+                        <small>Lejlighed <?php echo $bolig['lejlnr'] ?></small>
                     </div>
                     <div class="col-3 popupclose"><p>X</p></div>
                 </div>
-                <!-- <hr> -->
-                 <img src="<?php echo 'projekter/'.$projekt['projektnavn'].'/'.$bolig['plantegning'] ?>" alt="Plantegning" style="width:100%;">
-                <!-- <hr> -->
+
+                <img src="<?php echo 'projekter/'.$projekt['projektnavn'].'/'.$bolig['plantegning'] ?>" alt="Plantegning" style="width:100%;">
+
                 <div class="row informationarea">
-                    <div class="col-4">
-                        <div class="row colnopadding">
-                            <div class="col-3">
+
+                        <div class="row colnopadding col-4">
+                            <div class="col-4">
                                 <img src="img/icons/areal.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
-                                <p><?php echo $bolig['kvm'] ?> <small>m<sup>2</sup></small></p>
-                                
+                            <div class="col-8">
+                                <p><?php echo $bolig['kvm']?><small>m<sup>2</sup></small></p>
                             </div>
                         </div>
-                        <div class="row colnopadding">
-                            <div class="col-3">
+
+                        <div class="row colnopadding col-4">
+                            <div class="col-4">
                                 <img src="img/icons/etage.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
+                            <div class="col-8">
                                 <p><?php if($bolig['etage'] == 0){
                                     echo "Stue";
                                 } else{
@@ -214,26 +261,28 @@
                                 <small>Etage</small>
                             </div>
                         </div>
-                        <div class="row colnopadding">
-                            <div class="col-3">
+
+                        <div class="row colnopadding col-4">
+                            <div class="col-4">
                                 <img src="img/icons/room.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
+                            <div class="col-8">
                                 <p><?php echo $bolig['vaerelser'] ?></p>
                                 <small><?php if($bolig['vaerelser'] == 1){
                                     echo "Værelse";
                                 }else{
-                                    echo "værelser";
+                                    echo "Værelser";
                                 } ?></small>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row colnopadding">
-                            <div class="col-3">
+
+                        <div class="row colnopadding col-4">
+                            <div class="col-4">
                                 <img src="img/icons/elevator.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
+                            <div class="col-8">
                                 <p><?php if($bolig['elevator'] == 0){
                                     echo "Nej";
                                 } else{
@@ -242,77 +291,89 @@
                                 <small>Elevator</small>
                             </div>
                         </div>
-                        <div class="row colnopadding">
-                            <div class="col-3">
+
+                        <div class="row colnopadding col-4">
+                            <div class="col-4">
                                 <img src="img/icons/shower.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
+                            <div class="col-8">
                                 <p><?php echo $bolig['bad'] ?></p>
                                 <small><?php if($bolig['bad'] == 1){
-                                    echo "bad";
+                                    echo "Bad";
                                 } else{
-                                    echo "bade";
+                                    echo "Bade";
                                 } ?></small>
                             </div>
                         </div>
-                        <div class="row colnopadding">
-                            <div class="col-3">
-                                <img src="img/icons/ret.png" alt="Ikon">
+
+                        <div class="row colnopadding col-4">
+                            <div class="col-4">
+                                <img src="img/icons/toilet.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
+                            <div class="col-8">
                                 <p><?php echo $bolig['toilet'] ?></p>
                                 <small><?php if($bolig['toilet'] == 1){
-                                    echo "toilet";
+                                    echo "Toilet";
                                 }else{
-                                    echo "toileter";
+                                    echo "Toileter";
                                 } ?></small>
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="col-4">
-                        <div class="row colnopadding">
-                            <div class="col-3">
+
+                        <?php if($bolig['altan'] != 0){
+                            if($bolig['altan'] == 0 OR $bolig['altan'] == 1){
+                                $textaltan = "Altan";
+                            }else {
+                                $textaltan = "Altaner";
+                            } 
+
+                            echo '<div class="row colnopadding col-4">
+                            <div class="col-4">
                                 <img src="img/icons/altan.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
-                                <p><?php if($bolig['altan'] == 0){
-                                    echo "Ingen";
-                                }else{
-                                    echo $bolig['altan'];
-                                } ?></p>
-                                <small><?php if($bolig['altan'] == 0 OR $bolig['altan'] == 1){
-                                    echo "Altan";
-                                }else {
-                                    echo "Altaner";
-                                } ?></small>
+                            <div class="col-8"><p>'.$bolig['altan'].'</p>
+                            <small>'.$textaltan.'</small>
                             </div>
-                        </div>
-                        <div class="row colnopadding">
-                            <div class="col-3">
-                                <img src="img/icons/altan.png" alt="Ikon">
+                            </div>';
+                            }
+                        ?>
+
+                        <?php if($bolig['terasse'] != 0){
+                            if($bolig['terasse'] == 0 OR $bolig['terasse'] == 1){
+                                $textterrasse = "Terrasse";
+                            }else{
+                                $textterrasse = "Terrasser";
+                            } 
+
+                            echo '<div class="row colnopadding col-4">
+                            <div class="col-4">
+                                <img src="img/icons/terasse.png" alt="Ikon">
+                                <div class="cirkelimg"></div>
                             </div>
-                            <div class="col-9">
-                                <p><?php if($bolig['terasse'] == 0){
-                                    echo "ingen";
-                                }else {
-                                    echo $bolig['terasse'];
-                                } ?></p>
-                                <small><?php if($bolig['terasse'] == 0 OR $bolig['terasse'] == 1){
-                                    echo "terrasse";
-                                }else{
-                                    echo "terrasser";
-                                } ?></small>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="col-8">
+                                <p>'.$bolig['terasse'].'</p>
+                                <small>'.$textterrasse.'</small>
+                                </div>
+                            </div>';
+                        }
+                        ?>
+                    
                 </div>
                 <hr>
                 <div class="prisarea">
-                    <p>Leje: <?php echo number_format($bolig['lejeraw'], 0, ',', '.') ?>,-</p>
-                    <small>Aconto varme: <?php echo number_format($bolig['acontovarme'],0,',','.')?>,-</small>       
-                    <small>Aconto vand: <?php echo number_format($bolig['acontovand'],0,',','.') ?>,-</small>        
-                    <small>Depositum + forudbetalt: <?php echo number_format(($bolig['depositum']*$bolig['lejegebyr'])+($bolig['forudbetalt']*$bolig['lejegebyr']),0,',','.')?>,-</small>
+                    <?php 
+                        if($bolig['status'] == '1'){
+                            echo "<p>Boligen er udlejet</p>";
+                        }else{
+                            echo "<p>Leje: " .number_format($bolig['lejeraw'], 0, ',', '.'). ",-</p>
+                            <small>Aconto varme: " .number_format($bolig['acontovarme'],0,',','.'). ",-</small>       
+                            <small>Aconto vand: " .number_format($bolig['acontovand'],0,',','.'). ",-</small>        
+                            <small>Depositum + forudbetalt: " .number_format(($bolig['depositum']*$bolig['lejegebyr'])+($bolig['forudbetalt']*$bolig['lejegebyr']),0,',','.'). ",-</small>";
+                        }
+                    ?>
                 </div>
                 <div class="row mobillink">
                     <div class="col-12">
